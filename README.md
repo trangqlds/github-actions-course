@@ -8,3 +8,4 @@ Jobs run in parallel by default
 steps run sequentially by default
 Jobs run in independent VM
 
+if singe step fail, all subsequent steps will fail
