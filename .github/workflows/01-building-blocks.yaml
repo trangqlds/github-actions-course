@@ -1,4 +1,4 @@
-Name: 01 - Building Blocks
+name: 01 - Building Blocks
 on: 
   push
   workflow_dispatch
@@ -15,4 +15,5 @@ jobs:
         run: |
           echo  "I will fail"
           exit 1
-      - name: 
+      - name: Say googdbye
+        run: echo "Goodbye, World!"
