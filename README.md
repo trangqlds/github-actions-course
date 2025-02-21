@@ -6,7 +6,7 @@ Indentation is important
 # Workflow, Jobs, steps
 Jobs run in parallel by default
 steps run sequentially by default
-Jobs run in independent VM
+Jobs run in independent VM, steps share VM
 
 # if singe step fail, all subsequent steps will fail
 
@@ -38,4 +38,10 @@ on:
 OR 
     push:
     pull_request:
+
+
+# Note: 
+-  Keep the VM resources in mind, especially when running commands that rely on parallel execution (for example, running parallel jest tests): 
+For example, running unit test on our machine well, but when push it and run on CI/CD pipeline, we run into the resource limitation of our githhub-hosted VM
+ - Do not use self-hosted runners in public repositories! as they are more prone to attack
 
