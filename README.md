@@ -45,3 +45,24 @@ OR
 For example, running unit test on our machine well, but when push it and run on CI/CD pipeline, we run into the resource limitation of our githhub-hosted VM
  - Do not use self-hosted runners in public repositories! as they are more prone to attack
 
+- to know if bash or any software is aviable in a runner: got to the jobs on github action -> set up jobs -> runner image -> included software
+Be careful with MacOS runners, they are expensive!
+
+- MacOS runners are expensive when used in private repositories, and they can easily consume all the free minutes we have available for the month! Be careful if you are running your workflows in a private repository.
+
+- How to access the runner OS
+
+The runner OS is available as an environment variable named $RUNNER_OS.
+
+Accessing environment variables in Windows
+
+Window's default shell is not compatible with bash-like syntax for accessing environment variables. You can either use a compatible method, or use bash by explicitly setting the shell for the respective step:
+
+steps: 
+  - name: Show OS 
+    shell: bash 
+    run: echo "I'm running on bash."
+
+# Actions: wrap up commands that we use repeatedly in actions 
+actions marketkplace to use 3rd party custom actions, select one with badget verified by GitHub
+https://github.com/marketplace?type=actions
