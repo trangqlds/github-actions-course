@@ -69,9 +69,19 @@ https://github.com/marketplace?type=actions
 
 - to run independence in a directory, 2 ways:
  - name: Install Dependencies
-              run: |
-                cd 04-using-actions/react-app
-                npm ci
+    run: |
+        cd 04-using-actions/react-app
+        npm ci
 
   OR
-  
+    run: npm ci
+    working-directory: 04-using-actions/react-app
+
+- to set a default directory for all runs: using defaults
+jobs: 
+    build:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: 04-using-actions/react-app
+        steps:
