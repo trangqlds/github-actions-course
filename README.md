@@ -66,3 +66,12 @@ steps:
 # Actions: wrap up commands that we use repeatedly in actions 
 actions marketkplace to use 3rd party custom actions, select one with badget verified by GitHub
 https://github.com/marketplace?type=actions
+
+- to run independence in a directory, 2 ways:
+ - name: Install Dependencies
+              run: |
+                cd 04-using-actions/react-app
+                npm ci
+
+  OR
+  
