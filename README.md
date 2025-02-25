@@ -85,3 +85,13 @@ jobs:
             run:
                 working-directory: 04-using-actions/react-app
         steps:
+
+# Event filters
+- If multiple filters are specified, all of them must be satisifed for the workflow to run
+https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#onpushbranchestagsbranches-ignoretags-ignore
+
+# aCtivity types
+- triggers can have different activity types 
+- specify which activities of certatin triggers execute our workflow
+check this docs
+https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows
