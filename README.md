@@ -95,3 +95,8 @@ https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-
 - specify which activities of certatin triggers execute our workflow
 check this docs
 https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows
+
+
+# Contexts
+https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#about-contexts
+
