@@ -112,3 +112,6 @@ on:
         debug:
           type: boolean
           default: false
+
+# expression can be used to reference information from multiple sources within the workflow
+${{ <expression> }}
