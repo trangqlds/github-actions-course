@@ -1,5 +1,7 @@
 name: 06 - Contexts
 
+run-name: 6 - Contexts | DEBUG - ${{ inputs.debug }}
+
 on:
     push:
     workflow_dispatch:
@@ -8,7 +10,7 @@ on:
           type: boolean
           default: false
 
-run-name: 6 - Contexts | DEBUG - ${{ inputs.debug }}
+
 
 jobs:
     echo-data:
