@@ -10,7 +10,7 @@ on:
 
 jobs:
     echo:
-        runs_on: ubuntu-latest
+        runs-on: ubuntu-latest
         steps:
             - name: '[debug] Print start-up data'
               if: ${{inputs.debug }}
@@ -20,7 +20,7 @@ jobs:
                 echo "commit SHA: ${{ github.sha }}"
                 echo "Runner OS: ${{ runner.os }}"
             - name: '[debug] Print when triggered from main'
-              if: ${{ github.debug && github.ref == 'refs/heads/main'}}
+              if: ${{ inputs.debug && github.ref == 'refs/heads/main'}}
               run: echo "I was triggered from main"
             - name: Greeting
               run: echo "Hello, world"
