@@ -115,3 +115,22 @@ on:
 
 # expression can be used to reference information from multiple sources within the workflow
 ${{ <expression> }}
+
+
+Conditionally executing jobs and steps
+
+To execute jobs and steps conditionally, we can leverage the if keyword in either the job or the step definition. The if keyword accepts an expression, and the job or step will be executed if the expression evaluates to a truthy value; otherwise, the job or step will be skipped. Here is an example:
+
+jobs: 
+  echo: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        if: github.event_name == 'push'
+        run: echo "I was triggered by a push event"
+
+## Expressions allow for default values and ternary operations. These leverage the && and || logical operators in the following way:
+
+Providing a default: ${{ expression || default_value }}. The default_value will be used if the expression evaluates to a falsy value.
+
+Using the ternary operation: ${{ expression && truthy_value || falsy_value }}. The truthy_value will be used if the expression evaluates to a truthy value, and the falsy_value will be used otherwise. The actual value resulting from the expression evaluation will not be present in the result of this ternary operation.
