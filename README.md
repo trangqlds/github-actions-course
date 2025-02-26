@@ -100,3 +100,15 @@ https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow
 # Contexts
 https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#about-contexts
 
+## run-name: define the name of the workflow run that appears on the UI
+name: 06 - Contexts
+
+run-name: 6 - Contexts | DEBUG - ${{ inputs.debug }}
+
+on:
+    push:
+    workflow_dispatch:
+      inputs:
+        debug:
+          type: boolean
+          default: false
