@@ -138,5 +138,12 @@ Using the ternary operation: ${{ expression && truthy_value || falsy_value }}. T
 
 # VARIABLES
 - Set and reuse non-sensitive configuration information
-- Single workflow: can be accessed like $var_name
+- Single workflow: can be accessed like $var_name or ${{ vars.name }}
+  $var_na,me: wont be replaced before execution while ${{ }} will be 
 - Mutiple workflow: need to access by using expression: ${{ vars.name }}
+- Note: to avoid errors when recalling from shell script, avoid using '-' in environment variable name, use  underscore _ instead
+  for example: var_step2 instead of var-step2
+  For job/step name: use '-' (???)
+
+- job/step level env variable is only available at job/step level but workflow env level is available at workflow level, job and step level
+
