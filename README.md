@@ -128,9 +128,15 @@ jobs:
       - name: Test
         if: github.event_name == 'push'
         run: echo "I was triggered by a push event"
+Note: if is already an expression, so there is no need to do this: ${{ github.event_name == 'push' }}
 
 ## Expressions allow for default values and ternary operations. These leverage the && and || logical operators in the following way:
 
 Providing a default: ${{ expression || default_value }}. The default_value will be used if the expression evaluates to a falsy value.
 
 Using the ternary operation: ${{ expression && truthy_value || falsy_value }}. The truthy_value will be used if the expression evaluates to a truthy value, and the falsy_value will be used otherwise. The actual value resulting from the expression evaluation will not be present in the result of this ternary operation.
+
+# VARIABLES
+- Set and reuse non-sensitive configuration information
+- Single workflow: can be accessed like $var_name
+- Mutiple workflow: need to access by using expression: ${{ vars.name }}
