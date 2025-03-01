@@ -9,7 +9,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Failing step
-              run: echo exit 1
+              run: exit 1
             - name: I will be skipped
               if: ${{ success() }}
               run: echo "I will print if previous steps succeed"
@@ -21,3 +21,4 @@ jobs:
               run: echo "I will always print, except when the workflow is cancelled"
             - name: I will execute when cancelled
               if: ${{ cancelled() }}
+              run: echo "I will only print when the workflow is cancelled"
