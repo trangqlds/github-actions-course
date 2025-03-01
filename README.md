@@ -147,3 +147,14 @@ Using the ternary operation: ${{ expression && truthy_value || falsy_value }}. T
 
 - job/step level env variable is only available at job/step level but workflow env level is available at workflow level, job and step level
 
+- Note: these keywords
+  * env: to define variables at worklfow/jobs/step levels
+  * environment : to define what environment a sjob should run, for example, production, staging, development
+
+# Function
+- general purpose function
+- Status check function: success, failure, always, cancelled ( !cancelled : not cancelled)
+Note: recommended to use !cancelled() instead of always to excecute jobs or steps even if previous jobs or steps failed, but to prevent execution in case the worfklow is cancelled
+
+Check this doc:
+https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/evaluate-expressions-in-workflows-and-actions
