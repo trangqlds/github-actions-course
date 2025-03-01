@@ -168,3 +168,5 @@ steps:
       ${{ toJSON(github.event.pull_request.labels) }}
       EOF
 
+# Controlling the execution flow: 
+- all jobs are executed in parellel by default. Use keyword "need" to execute jobs in sequence
