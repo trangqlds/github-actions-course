@@ -169,4 +169,24 @@ steps:
       EOF
 
 # Controlling the execution flow: 
-- all jobs are executed in parellel by default. Use keyword "need" to execute jobs in sequence
+- all jobs are executed in parellel by default (steps are run sequentially already). Use keyword "need" to execute JOBS in sequence
+10-execution-flow.yaml is quite similar  to a real CI/CD worflow will be like. 
+- When specifying inputs for a trigger, could use  "description" to create a tick box when manually trigger in UI:
+    on:
+    workflow_dispatch:
+        inputs:
+            pass-unit-tests:
+              type: boolean
+              description: whether unit tests will pass or not
+              default: true
+
+- to refer to inputs specified for a trigger, use ${{ inputs.your_input_name }}
+  steps:
+    - name: Failing tests
+      if : ${{ !inputs.pass-unit-tests }}
+      run: exit 1
+
+- continue-on-error: true => this could be used to experiement. When using it, even if a job fails, sequential jobs will still succeed and the whole workflow still suceed. Check this https://github.com/trangqlds/github-actions-course/actions/runs/13609445505
+
+# Inputs and outputs
+- Input provide information to customize workflows and actions
