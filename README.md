@@ -161,10 +161,10 @@ https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow
 Printing multi-line JSON strings
 
 To print a multi-line JSON string from the toJSON GitHub function, you can use the following pattern:
-steps:
-  - name: Print PR labels
-    run: | 
-      cat << EOF
-      ${{ toJSON(github.event.pull_request.labels) }}
-      EOF
+ steps:
+   - name: Print PR labels
+     run: | 
+       cat << EOF
+       ${{ toJSON(github.event.pull_request.labels) }}
+       EOF
 
