@@ -189,4 +189,8 @@ steps:
 - continue-on-error: true => this could be used to experiement. When using it, even if a job fails, sequential jobs will still succeed and the whole workflow still suceed. Check this https://github.com/trangqlds/github-actions-course/actions/runs/13609445505
 
 # Inputs and outputs
-- Input provide information to customize workflows and actions
+- Input provide information to customize workflows and actions:
+  * workflow_dispactch 
+  * workflow-call: to build reusable workflow: need to provide inputs
+  * when creating a custom actions: 
+3 types for inputs for triggers: boolean, choice (need to provide "options") and vafriable
