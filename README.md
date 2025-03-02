@@ -193,4 +193,12 @@ steps:
   * workflow_dispactch 
   * workflow-call: to build reusable workflow: need to provide inputs
   * when creating a custom actions: 
-3 types for inputs for triggers: boolean, choice (need to provide "options") and vafriable
+3 types for inputs for triggers: boolean, choice (need to provide "options") and environment
+
+- Outputs: use output data from previous jobs for later usage
+Not suitable if have to share more complex data or a set of files, then artifacts are better 
+  1. Need to provide id for jobs htaht we want to produce outputs 
+  2. Echo key-value pairs the $GITHUB_OUTPUT varaiable (it holds path to a certain file used by github to process the output of it setep)
+    need to use ">>" as if use echo with 1 ">", it will overwrite the file and lose previous outputs
+  3. Mention the outputs in the outputs section of the JOB (NOT STEPS)
+  4, 5 ...
