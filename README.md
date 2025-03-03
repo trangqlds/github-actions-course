@@ -204,15 +204,40 @@ Not suitable if have to share more complex data or a set of files, then artifact
   4, 5 ...
 
 NOTE: referring to 12-output.yaml
-  *  write the output of a step to GITHUB _OUTPUT, no space before "
+ * to write the output of a step to GITHUB_OUTPUT, make sure no space before ". For example:
+    run: echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
+ * in the outputs keywork for a job:
     outputs:
-            build-status-output: ${{ steps.<step-id>.outputs.<name> }}
-        steps:
-            - name: Print GITHUB_OUTPUT path
-              run: echo "GITHUB_OUTPUT is $GITHUB_OUTPUT"
-            - name: Build
-              id: build
-              run: echo "<name>>=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
-  * a job should run only if the previous "build" step succeed and output is success
-        needs: build 
-        if:  ${{ needs.build.outputs.build-status-output == 'success' }}
+      build-status-output : ${{ steps.<step-id>.outputs.<name> }}
+    => step id is id of the step that produce the outputs in that job
+    => name: is from echo "<name>=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
+
+* a job Should execute only after the "build" job successfully completes and if the "status" output of the build job equals success: 
+    needs: build
+    if: ${{ steps.build.outputs.build-status == 'success' }}
+
+NOTE: referring to 12-output.yaml
+ * to write the output of a step to GITHUB_OUTPUT, make sure no space before ". For example:
+    run: echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
+ * in the outputs keywork for a job:
+    outputs:
+      build-status-output : ${{ steps.<step-id>.outputs.<name> }}
+    => step id is id of the step that produce the outputs in that job
+    => name: is from echo "<name>=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
+
+* a job Should execute only after the "build" job successfully completes and if the "status" output of the build job equals success: 
+    needs: build
+    if: ${{ steps.build.outputs.build-status == 'success' }}
+
+NOTE: referring to 12-output.yaml
+ * to write the output of a step to GITHUB_OUTPUT, make sure no space before ". For example:
+    run: echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
+ * in the outputs keywork for a job:
+    outputs:
+      build-status-output : ${{ steps.<step-id>.outputs.<name> }}
+    => step id is id of the step that produce the outputs in that job
+    => name: is from echo "<name>=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
+
+* a job Should execute only after the "build" job successfully completes and if the "status" output of the build job equals success: 
+    needs: build
+    if: ${{ steps.build.outputs.build-status == 'success' }}
