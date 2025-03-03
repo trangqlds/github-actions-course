@@ -199,7 +199,9 @@ steps:
 Not suitable if have to share more complex data or a set of files, then artifacts are better 
   1. Need to provide id for jobs htaht we want to produce outputs 
   2. Echo key-value pairs the $GITHUB_OUTPUT varaiable (it holds path to a certain file used by github to process the output of it setep)
-    need to use ">>" as if use echo with 1 ">", it will overwrite the file and lose previous outputs
+    need to use ">>" as if use echo with 1 ">", it will overwrite the file and lose previous outputs.
+    Note: different steps in the same job will have different github_output path
+
   3. Mention the outputs in the outputs section of the JOB (NOT STEPS)
   4, 5 ...
 
