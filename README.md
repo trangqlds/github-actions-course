@@ -86,6 +86,11 @@ jobs:
                 working-directory: 04-using-actions/react-app
         steps:
 
+
+-This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it:
+  uses: actions/checkout@v4
+
+
 # Event filters
 - If multiple filters are specified, all of them must be satisifed for the workflow to run
 https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#onpushbranchestagsbranches-ignoretags-ignore
@@ -243,3 +248,12 @@ NOTE: referring to 12-output.yaml
 * a job Should execute only after the "build" job successfully completes and if the "status" output of the build job equals success: 
     needs: build
     if: ${{ steps.build.outputs.build-status == 'success' }}
+
+# Catching:
+  - To speed up workflow runs by caching stable files 
+  - store files and later retrieve them based on a key. 
+  - workflows can access the cache from their branch or from the default branch
+
+  https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows
+
+  
