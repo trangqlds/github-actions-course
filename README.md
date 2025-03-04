@@ -257,4 +257,18 @@ NOTE: referring to 12-output.yaml
   https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows
 
   * 13-caching.yaml:
-    - 
+    - need to specify full path for catching since since the working-directory option set as default at the job level applies only to run commands.
+            - name: Download cached dependencies
+              id: cache
+              if: ${{ inputs.use-cache }}
+              uses: actions/cache@v3
+              with:
+                  path: 13-caching/react-app/node_modules
+                  key: deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}
+            - name: Install Dependencies
+              if: steps.cache.outputs.cache-hit != 'true'
+  check this for details: https://github.com/actions/cache
+   - output 'cache-hit' a string value to indicate an exact match was found for the key. take 3 values: true, false
+  and empty string (if there is a cache miss)
+  - key: using hashFiles functions allows you to create a new cache when dependencies change
+  - path: a list of files/directories and wildcard patterns to cache and restore. 
