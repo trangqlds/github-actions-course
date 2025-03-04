@@ -30,7 +30,7 @@ jobs:
             - name: Setup Node
               uses: actions/setup-node@v4
               with:
-                  node_version: ${{ inputs.node-version }}
+                  node-version: ${{ inputs.node-version }}
             - name: Calculate Cache Key
               id: cache-key
               run: |
