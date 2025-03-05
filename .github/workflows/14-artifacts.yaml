@@ -52,4 +52,5 @@ jobs:
               with: 
                 name: app
                 path: 14-artifacts/react-app/build
-
+            - name: show fodler structure
+              run: ls -R
