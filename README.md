@@ -1,4 +1,5 @@
 Repository containing all examples and notes for the Github actions course
+https://github.com/lm-academy/github-actions-course/blob/main/.github/workflows/13-caching.yaml
 
 # YAML
 Indentation is important 
@@ -272,3 +273,11 @@ NOTE: referring to 12-output.yaml
   and empty string (if there is a cache miss)
   - key: using hashFiles functions allows you to create a new cache when dependencies change
   - path: a list of files/directories and wildcard patterns to cache and restore. 
+
+
+# Arifacts
+- share data between jobs and store data after workflows have completed
+- can upload artifact and download artifact in the SAME workflow (not in different workflows)
+- recommended when stored files are likely files to be accessed outside the workflow like build outputs, test results, log
+cache: files to be accessed within the workflow only
+
