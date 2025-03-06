@@ -287,55 +287,6 @@ cache: files to be accessed within the workflow only
 - for private repo: each executed jobs count towards billing purposes (minutes of billed time)
 Including and extending specific combinations to the matrix
 
-To include a specific configuration or extend a specific combination of a matrix, we can use the include option with the following syntax:
-
-strategy:
-  matrix:
-    node-version: [18.x, 20.x]
-    os:
-      - ubuntu-latest
-      - windows-latest
-    include:
-      - os: ubuntu-latest
-        tag: linux
-      - os: ubuntu-latest
-        node-version: 21.x
-The above example will include the tag key to all combinations that include the ubuntu-latest value for the os key, and it will also add a new combination for ubuntu-latest and node version 21.x (it will not have the 21.x node version set for the windows-latest option). The include option can be quite tricky to understand, so we discuss it in details in the next practical exercise!
-
-Including and extending specific combinations to the matrix
-
-To include a specific configuration or extend a specific combination of a matrix, we can use the include option with the following syntax:
-
-strategy:
-  matrix:
-    node-version: [18.x, 20.x]
-    os:
-      - ubuntu-latest
-      - windows-latest
-    include:
-      - os: ubuntu-latest
-        tag: linux
-      - os: ubuntu-latest
-        node-version: 21.x
-The above example will include the tag key to all combinations that include the ubuntu-latest value for the os key, and it will also add a new combination for ubuntu-latest and node version 21.x (it will not have the 21.x node version set for the windows-latest option). The include option can be quite tricky to understand, so we discuss it in details in the next practical exercise!
-
-Including and extending specific combinations to the matrix
-
-To include a specific configuration or extend a specific combination of a matrix, we can use the include option with the following syntax:
-
-strategy:
-  matrix:
-    node-version: [18.x, 20.x]
-    os:
-      - ubuntu-latest
-      - windows-latest
-    include:
-      - os: ubuntu-latest
-        tag: linux
-      - os: ubuntu-latest
-        node-version: 21.x
-The above example will include the tag key to all combinations that include the ubuntu-latest value for the os key, and it will also add a new combination for ubuntu-latest and node version 21.x (it will not have the 21.x node version set for the windows-latest option). The include option can be quite tricky to understand, so we discuss it in details in the next practical exercise!
-- fail-fast for matrices to stop executing all in-progress or queued jobs in the matrix if nay job in the matrix fails. 
 
 Tips
 Including and extending specific combinations to the matrix
@@ -356,3 +307,7 @@ strategy:
 The above example will include the tag key to all combinations that include the ubuntu-latest value for the os key, and it will also add a new combination for ubuntu-latest and node version 21.x (it will not have the 21.x node version set for the windows-latest option). The include option can be quite tricky to understand, so we discuss it in details in the next practical exercise!
 
 
+include:
+ - sensitive to the matching of the original matrix. If there is a complete match, it will add the additional property (listed in include) to the original options in matrics. If not, it creates  new option
+ - sensitive the order listed in the include option
+ => the include options are quite confusing, should avoid using it
