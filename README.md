@@ -281,3 +281,7 @@ NOTE: referring to 12-output.yaml
 - recommended when stored files are likely files to be accessed outside the workflow like build outputs, test results, log
 cache: files to be accessed within the workflow only
 
+# Matrices
+- run several variations of the same job
+- for example: run test suits in parallel in multiple Node versions before publishing an NPM package to ensure backward compatibility
+- for private repo: each executed jobs count towards billing purposes (minutes of billed time)

@@ -41,7 +41,7 @@ jobs:
             - name: Upload build files
               uses: actions/upload-artifact@v4
               with:
-                name: app
+                name: ${{ env.build-artifact-key}}
                 path: 14-artifacts/react-app/build
     deploy:
         runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
             - name: Download build files
               uses: actions/download-artifact@v4
               with: 
-                name: app
-                path: 14-artifacts/react-app/build
+                name: ${{ env.build-artifact-key }}}
+                path: build
             - name: show fodler structure
               run: ls -R
