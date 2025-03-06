@@ -307,7 +307,19 @@ strategy:
 The above example will include the tag key to all combinations that include the ubuntu-latest value for the os key, and it will also add a new combination for ubuntu-latest and node version 21.x (it will not have the 21.x node version set for the windows-latest option). The include option can be quite tricky to understand, so we discuss it in details in the next practical exercise!
 
 
-include:
+* include:
  - sensitive to the matching of the original matrix. If there is a complete match, it will add the additional property (listed in include) to the original options in matrics. If not, it creates  new option
  - sensitive the order listed in the include option
  => the include options are quite confusing, should avoid using it
+
+
+* exclude: 
+- processed before include option
+- can do partial matched
+
+# Environment
+- create multiple environments with different rules for multiple deployments
+- can specify dcide required approvers, branch restriction, variables
+- environment variables are available in the vars context
+- secrets are available in the secret context
+
