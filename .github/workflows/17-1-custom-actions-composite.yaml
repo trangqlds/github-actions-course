@@ -22,6 +22,9 @@ jobs:
         steps:
             - name: Checkout Code
               uses: actions/checkout@v4
+            - name: print env
+              run: 
+                echo " ${{ inputs.target-env }}"
             - name: Setup Node and NPM Dependencies
               uses: ./.github/actions/composite-cache-deps
               with:
