@@ -327,3 +327,5 @@ The above example will include the tag key to all combinations that include the 
 - when creating an custom action to share, it should be in its own repo
 - when create in an existing repo, it should be under ".github/actions/
 - when creating custom actions, should specify shell: bash
+
+* javascript custom action
