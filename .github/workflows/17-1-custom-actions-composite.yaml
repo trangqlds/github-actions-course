@@ -22,9 +22,6 @@ jobs:
         steps:
             - name: Checkout Code
               uses: actions/checkout@v4
-            - name: print working dir
-              run: 
-                echo " ${{ inputs.working-dir }}"
             - name: Setup Node and NPM Dependencies
               uses: ./.github/actions/composite-cache-deps
               with:
