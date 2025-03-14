@@ -20,7 +20,7 @@ on:
           default: 17-custom-actions/react-app
         debug:
           description: whether the output debug messags to the console
-          required: false
+          required: 'false'
 
 jobs:
     dependency-update:
