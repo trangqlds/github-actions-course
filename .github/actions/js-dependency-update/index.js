@@ -64,7 +64,7 @@ async function run() {
     /* whenever commit, it shows that this commit is done by automation user */
     await exec.exec(`git config --global user.name "gh-automation"`)
     await exec.exec(`git config --global user.email "gh-automation@email"`)
-    await exec.exec(`git checkout -b ${{ targetBranch}}`, [], {
+    await exec.exec(`git checkout -b ${ targetBranch }`, [], {
       ...commonExecOpts,
     });
     await exec.exec(`git add package.json package-lock.json`, [], {
@@ -74,7 +74,7 @@ async function run() {
       ...commonExecOpts,
     });
     /* should not use force in real life, probably do a rebase first */
-    await exec.exec(`git push -u origin ${{targetBranch}} --force`, [], {
+    await exec.exec(`git push -u origin ${ targetBranch } --force`, [], {
       ...commonExecOpts,
     });
 
