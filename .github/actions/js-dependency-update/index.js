@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const exec = require('@actions/exec');
+const github = require('@actions/github')
 
  /* validate name */
 const validateBranchName = ({ branchName }) =>  /^[a-zA-Z0-9_\-\.\/]+$/.test(branchName);
@@ -7,10 +8,15 @@ const validateDirectoryName = ({ dirName }) =>  /^[a-zA-Z0-9_\-\.\/]+$/.test(dir
  
 async function run() { 
   const baseBranch = core.getInput('base-branch');
-  const targetBranch = core.getInput('target-branch');
-  const ghToken = core.getInput('gh-token');
-  const workingDir = core.getInput('working-directory');
-  const debug = core.getBooleanInput('debug');
+  /* add required to be mroe resilient */
+  const targetBranch = core.getInput('target-branch', { required: true });
+  const ghToken = core.getInput('gh-token', { required: true });
+  const workingDir = core.getInput('working-directory', { required: true });
+  const debug = core.getBooleanInput('debug', { required: true });
+
+  const commonExecOpts = {
+    cwd: workingDir
+  }
 
   /* Set the secret */
   core.setSecret(ghToken);
@@ -42,19 +48,61 @@ async function run() {
   core.info(`[js-dependency-update]: target branch is ${targetBranch}`)
   core.info(`[js-dependency-update]: working directory is ${workingDir}`)
 
-  await exec.exec('npm update', [], {cwd: workingDir});
+  await exec.exec('npm update', [], { ...commonExecOpts});
 
   /*check if any file is modified */
   const gitStatus = await exec.getExecOutput(
     'git status -s package*.json',
     [],
     {
-      cwd: workingDir
+      ...commonExecOpts
     }
   );
 
   if (gitStatus.stdout.length > 0 ) {
     core.info('[js-dependency-update] : There are updates available.');
+    /* whenever commit, it shows that this commit is done by automation user */
+    await exec.exec(`git config --global user.name "gh-automation"`)
+    await exec.exec(`git config --global user.email "gh-automation@email"`)
+    await exec.exec(`git checkout -b ${{ targetBranch}}`, [], {
+      ...commonExecOpts,
+    });
+    await exec.exec(`git add package.json package-lock.json`, [], {
+      ...commonExecOpts,
+    });
+    await exec.exec(`git commit -m "chore: udpate dependencies`, [], {
+      ...commonExecOpts,
+    });
+    /* should not use force in real life, probably do a rebase first */
+    await exec.exec(`git push -u origin ${{targetBranch}} --force`, [], {
+      ...commonExecOpts,
+    });
+
+    const octokit = github.getOctokit(ghToken);
+
+    try {
+      await octokit.rest.pulls.create({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        title: `Update NPM depedencies`,
+        body: `This pull request updates NPM package`,
+        base: baseBranch,
+        head: targetBranch
+      });
+    } catch (e) {
+      core.error('[js-dependency-update]: something went wrong while creating the PR. Check the logs below.');
+      core.setFailed(e.message);
+      core.error(e);
+    }
+    
+
+
+
+
+
+
+
+
   } else {
     core.info('[js-dependency-update]: No updates at this point in time.');
   }

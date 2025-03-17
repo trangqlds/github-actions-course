@@ -329,3 +329,9 @@ The above example will include the tag key to all combinations that include the 
 - when creating custom actions, should specify shell: bash
 
 * javascript custom action
+
+- To allow GITHUB_TOKEN to have write access to both contents and pull requests of the current repo, add this to wthe workflow (same levels as jobs, on, name):
+  permissions:
+    contents: write
+    pull-requests: write
+
